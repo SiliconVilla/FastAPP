@@ -1,0 +1,26 @@
+{
+  "name": "FastAPP",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SiliconVilla/FastAPP.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SiliconVilla/FastAPP/issues"
+  },
+  "homepage": "https://github.com/SiliconVilla/FastAPP#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.4",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.13"
+  }
+}
