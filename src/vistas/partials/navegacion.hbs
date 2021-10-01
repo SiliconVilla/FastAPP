@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+      <a class="navbar-brand" href="/">FastApp - Comidas Rápidas</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ml-auto">
+          {{#if user}}
+           <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Gestionar Productos
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/">Listar</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/agregarProducto">Agregar</a>
+                
+                
+              </div>
+            </li>
+            <li class="nav-item">
+              <a href="/" class="nav-link">Perfil</a>
+            </li>
+            <li class="nav-item">
+              <a href="/" class="nav-link">Salir</a>
+            </li>
+          {{else}}
+            <li class="nav-item">
+              <a href="/login" class="nav-link"><img src="https://developers.google.com/identity/images/btn_google_signin_light_normal_web.png"/></a>
+            </li>
+            <!--li class="nav-item"-->
+              <!--a href="/registro" class="nav-link">Registrarse</a-->
+            </li>
+          {{/if}}
+
+          {{!--Ejemplo 2 NavBar--}}
+          {{!--<a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link" href="#">Features</a>
+          <a class="nav-link" href="#">Pricing</a>
+          <a class="nav-link disabled">Disabled</a>--}}
+        </div>
+      </div>
+    </div>
+</nav>
