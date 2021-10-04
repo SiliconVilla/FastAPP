@@ -13,12 +13,16 @@ app.engine('.hbs', exphbs({
 }));
 app.set('view engine', '.hbs');
 
+//routes files and css
+app.use(express.static('.'));
+
 //Conectores
 app.use(morgan('dev'));
 
 //Rutas
 app.use(require('./rutas/productos'));
 
+app.use(require('./rutas/login'));
 
 //Exportar el módulo
 module.exports = app;

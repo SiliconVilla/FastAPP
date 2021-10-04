@@ -1,0 +1,28 @@
+.gradient-custom-2 {
+    /* fallback for old browsers */
+    background-color: #4834d4;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background-image: -webkit-linear-gradient(315deg, #4834d4 0%, #0c0c0c 74%);
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-image: linear-gradient(315deg, #4834d4 0%, #0c0c0c 74%);
+
+}
+.btn-login{
+    color: #fff;
+    background-color: #4834d4;
+    border-color: #4834d4;
+}
+
+@media (min-width: 768px) {
+    .gradient-form {
+        height: 100vh !important;
+    }
+}
+@media (min-width: 769px) {
+    .gradient-custom-2 {
+        border-top-right-radius: 0.3rem;
+        border-bottom-right-radius: 0.3rem;
+    }
+}
