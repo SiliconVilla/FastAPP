@@ -8,6 +8,20 @@ router.get('/', (req, res) => {
     res.render('productos/listadoProductos');
 });
 
+//Gestionar Productos
+router.get('/gestionarProductos', (req, res) => {
+    //res.send('Listado de productos, configurar la vista');
+    /*db.ref('productos').orderByChild('estado').equalTo("Inactivo").once('value', (snapshot) => {
+        const data = snapshot.val();
+        res.render('productos/gestionarProductos', { productos: data });
+        console.log("Desde la base de datos --> ", data);
+    });*/
+
+    res.render('productos/gestionarProductos');
+    
+});
+
+
 //Agregar Productos
 router.get('/agregarProductos', (req, res) => {
     //res.send('Listado de productos, configurar la vista');
