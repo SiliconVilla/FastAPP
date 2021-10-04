@@ -5,7 +5,8 @@ const router = Router();
 //Login
 router.get('/login', (req, res) => {
     //console.log(req,res);
-    res.render('login/index');
+    const refLogin = "Página Lógin";
+    res.render('login/index', {referencia: refLogin});
 });
 
 //Exportar
