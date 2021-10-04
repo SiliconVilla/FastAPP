@@ -18,7 +18,7 @@ app.use(morgan('dev'));
 
 //Rutas
 app.use(require('./rutas/productos'));
-
+app.use(require('./rutas/usuarios'));
 
 //Exportar el módulo
 module.exports = app;
