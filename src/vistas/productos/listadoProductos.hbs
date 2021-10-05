@@ -5,45 +5,32 @@
 
         <h3>Listado de productos</h3>
 
-            <div class="col-md-3 p-4">
-                <div class="card text-center">
-                    <div class="card-body">
-                        Producto
-                    </div>
-                    <div class="card-footer">
-                        <p>IDProducto</p>
-                        <p>NombreProducto</p>
-                        <p>DescripciónProducto</p>
-                        <p>PrecioProducto</p>
-                        <p>ImagenProducto</p>
-                        <div class="row">
-                            <p><a href="/editarProductos" class="btn btn-info form-control">Editar</a></p>
-                            
-                            <p><a href="/" class="btn btn-danger form-control">Eliminar</a></p>
+        {{#if productos}}
+            {{#each productos}}
+                <div class="col-md-3 p-4">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            Producto
+                        </div>
+                        <div class="card-footer">
+                            <p hidden>{{@key}}</p>
+                            <p>{{nombre}}</p>
+                            <p>{{descripcion}}</p>
+                            <p>{{precio}}</p>
+                            <p>{{imagen}}</p>
+                            <div class="row">
+                                <p><a href="/editarProductos/{{@key}}" class="btn btn-info form-control">Editar</a></p>
+                                
+                                <p><a href="/eliminarProducto/{{@key}}" class="btn btn-danger form-control">Eliminar</a></p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                
+            {{/each}}
+        {{/if}}
 
-            <div class="col-md-3 p-4">
-                <div class="card text-center">
-                    <div class="card-body">
-                        Producto
-                    </div>
-                    <div class="card-footer">
-                        <p>IDProducto</p>
-                        <p>NombreProducto</p>
-                        <p>DescripciónProducto</p>
-                        <p>PrecioProducto</p>
-                        <p>ImagenProducto</p>
-                        <div class="row">
-                            <p><a href="/editarProductos" class="btn btn-info form-control">Editar</a></p>
-                            
-                            <p><a href="/" class="btn btn-danger form-control">Eliminar</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
 
     </div>
 

@@ -1,44 +1,42 @@
-<div class="col-md-3 offset-md-4"><h2>Gestión de Usuarios</h2>
-</div>
-<hr>
-<br>
-<br>
+<div class="container text-center">
+  <h2>Gestión de Usuarios</h2>
 
-<div class="container">
-  <table class="table table-striped">
-  <thead>
-    <tr>
-      
-      <th scope="col">ID usuario</th>
-      <th scope="col">Nombre de Usuario</th>
-      <th scope="col">Rol de Usuario</th>
-      <th scope="col">Estado de Usuario</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Juan</td>
-      <td>Vendedor</td>
-      <td>Autorizado</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Eliza</td>
-      <td>Administrador</td>
-      <td>Autorizado</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td >Larry</td>
-      <td>Operario</td>
-      <td>Pendiente</td>
-    </tr>
-  </tbody>
-</table>
-<br>
-<hr>
-<div class="container">
-    <a class="btn btn-primary" href="#" role="button">Modificar</a>
-</div>
+{{#if usuarios}}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th scope="col">ID usuario</th>
+            <th scope="col">Nombre de Usuario</th>
+            <th scope="col">Rol de Usuario</th>
+            <th scope="col">Estado de Usuario</th>
+            <th scope="col">Acción</th>
+            
+            </tr>
+        </thead>
+
+
+        
+
+        <tbody>
+
+            {{#each usuarios}}
+            
+                <tr>
+                    
+                    <td>{{@key}}</td>
+                    <td>{{nombre}}</td>
+                    <td>{{rol}}</td>
+                    <td>{{estado}}</td>
+                    <td><a href="/activarProducto/{{@key}}" class="btn btn-danger form-control">Activar</a></td>
+                    
+                    
+                    
+                </tr>
+
+            {{/each}}
+            
+            
+        </tbody>
+    </table>
+{{/if}}
 </div>
