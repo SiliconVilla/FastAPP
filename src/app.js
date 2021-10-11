@@ -16,7 +16,7 @@ app.set('view engine', '.hbs');
 
 //routes files and css
 app.use(express.static('.'));
-app.set(express.static(path.join(__dirname, 'publico')));
+app.set(express.static(path.join(__dirname, 'src/publico')));
 
 //Conectores
 app.use(morgan('dev'));

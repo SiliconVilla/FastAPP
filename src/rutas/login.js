@@ -3,7 +3,7 @@ const router = Router();
 //Conectar a Base de Datos
 
 //Login
-router.get('/login', (req, res) => {
+router.get('/', (req, res) => {
     //console.log(req,res);
     const refLogin = "Página Lógin";
     res.render('login/index', {referencia: refLogin});
