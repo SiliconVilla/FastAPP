@@ -11,7 +11,7 @@ admin.initializeApp({
 const db = admin.database();*/
 
 const passport = require('passport');
-const { estaLogueado, noEstaLogueado } = require('../rutas/auth');
+//const { noEstaLogueado } = require('../rutas/auth');
 
 const db = require('../keysfirebase');
 
@@ -27,7 +27,7 @@ const db = require('../keysfirebase');
 });*/
 
 //Gestionar Productos
-router.get('/gestionarProductos', estaLogueado, (req, res) => {
+router.get('/gestionarProductos', (req, res) => {
     //res.send('Listado de productos, configurar la vista');
     db.ref('productos').orderByChild('estado').equalTo("Inactivo").once('value', (snapshot) => {
         const data = snapshot.val();
@@ -38,7 +38,7 @@ router.get('/gestionarProductos', estaLogueado, (req, res) => {
 });
 
 
-router.get('/activarProducto/:id', estaLogueado, (req, res) => {
+router.get('/activarProducto/:id', (req, res) => {
     //res.send('Listado de productos, configurar la vista');
     const id = req.params.id;
     const estado = "Activo";
@@ -51,12 +51,12 @@ router.get('/activarProducto/:id', estaLogueado, (req, res) => {
 
 
 //Agregar Productos
-router.get('/agregarProductos', estaLogueado, (req, res) => {
+router.get('/agregarProductos', (req, res) => {
     //res.send('Listado de productos, configurar la vista');
     res.render('productos/agregarProductos');
 });
 
-router.post('/agregarProductos/', estaLogueado, (req, res) => {
+router.post('/agregarProductos/', (req, res) => {
     const id = req.params.id;
     const estado = "Activo";
     const { nombre, descripcion, precio, imagen } = req.body;
@@ -75,7 +75,7 @@ router.post('/agregarProductos/', estaLogueado, (req, res) => {
 
 
 //Editar Productos
-router.get('/editarProductos/:id', estaLogueado, (req, res) => {
+router.get('/editarProductos/:id', (req, res) => {
     //res.send('Listado de productos, configurar la vista');
     db.ref('productos').child(req.params.id).once('value', (snapshot) => {
         const data = snapshot.val();
@@ -84,7 +84,7 @@ router.get('/editarProductos/:id', estaLogueado, (req, res) => {
     });
 });
 
-router.post('/editarProductos/:id', estaLogueado, (req, res) => {
+router.post('/editarProductos/:id', (req, res) => {
     const id = req.params.id;
     const { nombre, descripcion, precio, imagen } = req.body;
     const nuevoProducto = {
@@ -99,7 +99,7 @@ router.post('/editarProductos/:id', estaLogueado, (req, res) => {
 
 
 //Eliminar producto - Cambiar estado
-router.get('/eliminarProducto/:id', estaLogueado, (req, res) => {
+router.get('/eliminarProducto/:id', (req, res) => {
     const id = req.params.id;
     const estado = "Inactivo";
     db.ref('productos').child(id).child('estado').set(estado);

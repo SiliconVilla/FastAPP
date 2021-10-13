@@ -2,9 +2,13 @@ const express = require('express');
 const morgan = require('morgan');
 const exphbs = require('express-handlebars');
 const path = require('path');
-
-const { estaLogueado, noEstaLogueado } = require('./rutas/auth');
-
+/*  PASSPORT SETUP  */
+const passport = require('passport');
+const googleid = require('./googleid');
+const GoogleStrategy = require('passport-google-oauth2');
+var userProfile;
+//const { estaLogueado, noEstaLogueado } = require('./rutas/auth');
+const db = require('./keysfirebase');
 
 const app = express();
 
@@ -38,28 +42,18 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({
     extended: false
 }));
+app.use(express.json());
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Rutas
 app.use(require('./rutas/productos'));
 app.use(require('./rutas/login'));
 app.use(require('./rutas/usuarios'));
 
-/*  PASSPORT SETUP  */
-const passport = require('passport');
-const googleid = require('./googleid');
-const GoogleStrategy = require('passport-google-oauth2');
-var userProfile;
 
-app.use(passport.initialize());
-app.use(passport.session());
 
-passport.serializeUser(function(user, cb) {
-    cb(null, user);
-});
 
-passport.deserializeUser(function(obj, cb) {
-    cb(null, obj);
-});
 
 passport.use(new GoogleStrategy({
     clientID: googleid.GOOGLE_CLIENT_ID,
@@ -72,20 +66,18 @@ passport.use(new GoogleStrategy({
   }
 ));
 
+passport.serializeUser(function(user, cb) {
+    cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+    cb(null, obj);
+});
+
 //Envío referencia login para evitar el navbar
 const refLogin = "Página Lógin";
 
-//Listar Productos y será la raíz donde redirije al autenticar
-const db = require('./keysfirebase');
-app.get('/', estaLogueado, (req, res) => {
-    //res.send('Listado de productos, configurar la vista');
-    db.ref('productos').orderByChild('estado').equalTo("Activo").once('value', (snapshot) => {
-        const data = snapshot.val();
-        res.render('productos/listadoProductos', { productos: data, usuario: userProfile });
-        console.log('Datos desede la bd --> ', data);
-    });
-    
-});
+
     
 //Error de autenticación
 app.get('/error', (req, res) => res.send("error logging in"));
@@ -103,10 +95,22 @@ app.get('/auth/google/callback',
   });
 
   //Logout
-app.get('/logout', estaLogueado, (req, res) => {
+app.get('/logout', (req, res) => {
         req.logOut();
         res.redirect('/login');
     });
+
+    //Listar Productos y será la raíz donde redirije al autenticar
+
+app.get('/', (req, res) => {
+    //res.send('Listado de productos, configurar la vista');
+    db.ref('productos').orderByChild('estado').equalTo("Activo").once('value', (snapshot) => {
+        const data = snapshot.val();
+        res.render('productos/listadoProductos', { productos: data, usuario: userProfile });
+        console.log('Datos desede la bd --> ', data);
+    });
+    
+});
 
 //Exportar el módulo
 module.exports = app;
