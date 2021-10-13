@@ -16,44 +16,31 @@ const passport = require('passport');
 const db = require('../keysfirebase');
 
 //Listar Productos y será la raíz
-/*router.get('/', (req, res) => {
+
+router.get('/productos', (req, res) => {
     //res.send('Listado de productos, configurar la vista');
     db.ref('productos').orderByChild('estado').equalTo("Activo").once('value', (snapshot) => {
         const data = snapshot.val();
-        res.render('productos/listadoProductos', { productos: data });
+        res.render('productos/listadoProductos', {activeProductos : true, productos: data });
         console.log('Datos desede la bd --> ', data);
     });
-    
-});*/
-
-//Gestionar Productos
-router.get('/gestionarProductos', (req, res) => {
-    //res.send('Listado de productos, configurar la vista');
-    db.ref('productos').orderByChild('estado').equalTo("Inactivo").once('value', (snapshot) => {
-        const data = snapshot.val();
-        res.render('productos/gestionarProductos', { productos: data });
-        console.log("Desde la base de datos --> ", data);
-    });
-    
 });
-
 
 router.get('/activarProducto/:id', (req, res) => {
     //res.send('Listado de productos, configurar la vista');
     const id = req.params.id;
     const estado = "Activo";
     db.ref('productos').child(id).child('estado').set(estado);
-    res.redirect('/gestionarProductos');
-    
+    res.redirect('/productos');
 });
 
 
 
 
 //Agregar Productos
-router.get('/agregarProductos', (req, res) => {
+router.get('/productos/crear', (req, res) => {
     //res.send('Listado de productos, configurar la vista');
-    res.render('productos/agregarProductos');
+    res.render('productos/agregarProductos',{activeProductos : true,});
 });
 
 router.post('/agregarProductos/', (req, res) => {
@@ -69,18 +56,18 @@ router.post('/agregarProductos/', (req, res) => {
     };
     db.ref('productos').push(nuevoProducto);
     req.flash('agregado', 'Insertado Correctamente');
-    res.redirect('/');
+    res.redirect('/productos');
 });
 
 
 
 
 //Editar Productos
-router.get('/editarProductos/:id', (req, res) => {
+router.get('/productos/editar/:id', (req, res) => {
     //res.send('Listado de productos, configurar la vista');
     db.ref('productos').child(req.params.id).once('value', (snapshot) => {
         const data = snapshot.val();
-        res.render('productos/editarProductos', { producto: data, id: req.params.id });
+        res.render('productos/editarProductos', {activeProductos : true, producto: data, id: req.params.id });
         console.log('Datos desede la bd --> ', data);
     });
 });
@@ -95,7 +82,8 @@ router.post('/editarProductos/:id', (req, res) => {
         imagen
     };
     db.ref('productos').child(id).update(nuevoProducto);
-    res.redirect('/');
+    req.flash('agregado', 'Editado Correctamente');
+    res.redirect('/productos');
 });
 
 
@@ -104,7 +92,8 @@ router.get('/eliminarProducto/:id', (req, res) => {
     const id = req.params.id;
     const estado = "Inactivo";
     db.ref('productos').child(id).child('estado').set(estado);
-    res.redirect('/');
+    req.flash('agregado', 'Eliminado Correctamente');
+    res.redirect('/productos');
 });
 
 //Exportar

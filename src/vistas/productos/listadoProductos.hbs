@@ -1,37 +1,76 @@
-
-
 <div class="container p-4">
-    <div class="row">
+    <div class="row mt-2">
+        <div class="row">
+            <div class="col-md-6 col-lg-6">
+                <h3>Listado de productos</h3>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <a href="/productos/crear" class="btn btn-outline-success float-end" role="button" aria-pressed="true">
+                    <i class="fas fa-plus"></i> Crear Producto
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-12 mt-3">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+                <input type="text" class="form-control" placeholder="Buscar" aria-label="Buscar"
+                    aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre Producto</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#if productos}}
+                {{#each productos}}
+                <tr>
+                    <td>{{@key}}</td>
+                    <td>{{nombre}}</td>
+                    <td>{{descripcion}}</td>
+                    <td>{{precio}}</td>
+                    <td>
+                        <a href="/productos/editar/{{@key}}" class="btn btn-outline-info" role="button" aria-pressed="true">
+                            <i class="far fa-edit"></i>
+                        </a>
+                        <a href="/eliminarProducto/{{@key}}" class="btn btn-outline-danger" role="button" aria-pressed="true">
+                            <i class="fa fa-trash-o fa-lg"></i>
+                        </a>
+                    </td>
+                </tr>
+                {{/each}}
+                {{/if}}
+            </tbody>
+        </table>
+        {{!-- {{#if productos}}
+        {{#each productos}}
+        <div class="col-md-3 p-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    Producto
+                </div>
+                <div class="card-footer">
+                    <p hidden>{{@key}}</p>
+                    <p>{{nombre}}</p>
+                    <p>{{descripcion}}</p>
+                    <p>{{precio}}</p>
+                    <p>{{imagen}}</p>
+                    <div class="row">
+                        <p><a href="/editarProductos/{{@key}}" class="btn btn-info form-control">Editar</a></p>
 
-        <h3>Listado de productos</h3>
-
-        {{#if productos}}
-            {{#each productos}}
-                <div class="col-md-3 p-4">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            Producto
-                        </div>
-                        <div class="card-footer">
-                            <p hidden>{{@key}}</p>
-                            <p>{{nombre}}</p>
-                            <p>{{descripcion}}</p>
-                            <p>{{precio}}</p>
-                            <p>{{imagen}}</p>
-                            <div class="row">
-                                <p><a href="/editarProductos/{{@key}}" class="btn btn-info form-control">Editar</a></p>
-                                
-                                <p><a href="/eliminarProducto/{{@key}}" class="btn btn-danger form-control">Eliminar</a></p>
-                            </div>
-                        </div>
+                        <p><a href="/eliminarProducto/{{@key}}" class="btn btn-danger form-control">Eliminar</a></p>
                     </div>
                 </div>
-                
-            {{/each}}
-        {{/if}}
+            </div>
+        </div>
 
-            
-
+        {{/each}}
+        {{/if}} --}}
     </div>
-
 </div>
