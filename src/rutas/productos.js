@@ -10,9 +10,13 @@ admin.initializeApp({
 
 const db = admin.database();*/
 
+const passport = require('passport');
+//const { noEstaLogueado } = require('../rutas/auth');
+
 const db = require('../keysfirebase');
 
 //Listar Productos y será la raíz
+
 router.get('/productos', (req, res) => {
     //res.send('Listado de productos, configurar la vista');
     db.ref('productos').orderByChild('estado').equalTo("Activo").once('value', (snapshot) => {
@@ -22,23 +26,12 @@ router.get('/productos', (req, res) => {
     });
 });
 
-//Gestionar Productos
-router.get('/gestionarProductos', (req, res) => {
-    //res.send('Listado de productos, configurar la vista');
-    db.ref('productos').orderByChild('estado').equalTo("Inactivo").once('value', (snapshot) => {
-        const data = snapshot.val();
-        res.render('productos/gestionarProductos', {activeProductos : true, productos: data });
-        console.log("Desde la base de datos --> ", data);
-    });
-});
-
-
 router.get('/activarProducto/:id', (req, res) => {
     //res.send('Listado de productos, configurar la vista');
     const id = req.params.id;
     const estado = "Activo";
     db.ref('productos').child(id).child('estado').set(estado);
-    res.redirect('/gestionarProductos');
+    res.redirect('/productos');
 });
 
 
@@ -62,6 +55,7 @@ router.post('/agregarProductos/', (req, res) => {
         estado
     };
     db.ref('productos').push(nuevoProducto);
+    req.flash('agregado', 'Insertado Correctamente');
     res.redirect('/productos');
 });
 
@@ -88,6 +82,7 @@ router.post('/editarProductos/:id', (req, res) => {
         imagen
     };
     db.ref('productos').child(id).update(nuevoProducto);
+    req.flash('agregado', 'Editado Correctamente');
     res.redirect('/productos');
 });
 
@@ -97,6 +92,7 @@ router.get('/eliminarProducto/:id', (req, res) => {
     const id = req.params.id;
     const estado = "Inactivo";
     db.ref('productos').child(id).child('estado').set(estado);
+    req.flash('agregado', 'Eliminado Correctamente');
     res.redirect('/productos');
 });
 

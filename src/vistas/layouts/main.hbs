@@ -24,6 +24,14 @@
             <div class="row">
                 {{> sidebar}}
                 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                    {{#if agregado}}
+                        <div class="col-md-4 mx-auto my-auto mt-4">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{agregado}}
+                                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        </div>
+                    {{/if}}
                     {{{body}}}
                 </main>
             </div>
