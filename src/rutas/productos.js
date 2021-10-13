@@ -68,6 +68,7 @@ router.post('/agregarProductos/', (req, res) => {
         estado
     };
     db.ref('productos').push(nuevoProducto);
+    req.flash('agregado', 'Insertado Correctamente');
     res.redirect('/');
 });
 
