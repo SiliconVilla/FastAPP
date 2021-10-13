@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const exphbs = require('express-handlebars');
 const path = require('path');
+const flash = require('connect-flash');
 /*  PASSPORT SETUP  */
 const passport = require('passport');
 const googleid = require('./googleid');
@@ -43,15 +44,21 @@ app.use(express.urlencoded({
     extended: false
 }));
 app.use(express.json());
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+//Variables Globales
+app.use((req, res, next) => {
+    app.locals.agregado = req.flash('agregado');
+    next();
+});
 
 //Rutas
 app.use(require('./rutas/productos'));
 app.use(require('./rutas/login'));
 app.use(require('./rutas/usuarios'));
-
-
 
 
 
