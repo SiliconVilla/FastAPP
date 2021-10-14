@@ -29,7 +29,7 @@ router.get('/agregarUsuarios', (req, res) => {
 
 router.post('/agregarUsuarios/', (req, res) => {
     const id = req.params.id;
-    const estado = "Activo";
+    const estado = "Pendiente";
     const { nombre, rol } = req.body;
     const nuevoUsuario = {
         nombre,
@@ -40,6 +40,15 @@ router.post('/agregarUsuarios/', (req, res) => {
     res.redirect('/maestroUsuarios');
 });
 
+//Editar Usuario
+
+router.post('/editarUsuarios/:id', (req, res) => {
+    const id = req.params.id;
+    const {rol,estado} = req.body;
+    console.log("DB:" +rol,estado)
+    db.ref('usuarios').child(id).update({rol,estado});
+    res.redirect('/maestroUsuarios');
+});
 
 //Exportar
 module.exports = router;

@@ -2,6 +2,7 @@
   <h2>Gestión de Usuarios</h2>
 
 {{#if usuarios}}
+    
     <table class="table table-striped">
         <thead>
             <tr>
@@ -9,27 +10,52 @@
             <th scope="col">Nombre de Usuario</th>
             <th scope="col">Rol de Usuario</th>
             <th scope="col">Estado de Usuario</th>
-            <th scope="col">Acción</th>
-            
+            <th scope="col">Editar</th>
+
             </tr>
         </thead>
-
 
         
 
         <tbody>
 
             {{#each usuarios}}
-            
+            <form action="/editarUsuarios/{{@key}}" id="formulario{{@key}}" method="POST"></form>        
                 <tr>
-                    
                     <td>{{@key}}</td>
                     <td>{{nombre}}</td>
-                    <td>{{rol}}</td>
-                    <td>{{estado}}</td>
-                    <td><a href="/activarProducto/{{@key}}" class="btn btn-danger form-control">Activar</a></td>
                     
+                    <td>
+                       
+                                <select class="form-select form-select-sm" name="rol" form="formulario{{@key}}" aria-label=".form-select-sm example">
+                                <option selected >{{rol}}</option>    
+                                <option value="Administrador">Administrador</option>
+                                <option value="Vendedor">Vendedor</option>
+                                <option value="Ejecutivo">Ejecutivo</option>
+                                <option value="Operario">Operario</option>
+                                <option value="Director">Director</option>
+                                <option value="Gerente">Gerente</option>
+                                <option value="Comercial">Comercial</option>
+                                </select>
+                        
+                    </td>
                     
+                    <td>
+                        
+                                <select class="form-select form-select-sm" name="estado" form="formulario{{@key}}" aria-label=".form-select-sm example" >
+                                <option selected >{{estado}}</option>                                
+                                <option value="Pendiente">Pendiente</option>
+                                <option value="Autorizado">Autorizado</option>
+                                <option value="No autorizado">No autorizado</option>
+                                </select>
+                         
+                    </td>
+                   
+                    <td>
+                        <button id="button-cambio" class="btn btn-primary form-control" form="formulario{{@key}}"> 
+                                    Aceptar
+                        </button>
+                    </td>                    
                     
                 </tr>
 
@@ -40,3 +66,4 @@
     </table>
 {{/if}}
 </div>
+
