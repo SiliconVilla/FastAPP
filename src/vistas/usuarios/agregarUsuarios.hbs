@@ -14,10 +14,34 @@
         <div class="col-md-12 p-2">
             <form action="../agregarUsuarios" method="POST">
                 <div class="form-group p-1">
+                    <label>Nombres y apellidos</label>
                     <input type="text" name="nombre" required placeholder="Nombres y apellidos" class="form-control" autofocus>
                 </div>
                 <div class="form-group p-1">
-                    <input type="text" name="rol" required placeholder="Rol" class="form-control">
+                    <label>Correo Electronico</label>
+                    <input type="email" name="correo" required placeholder="Correo Electronico" class="form-control">
+                </div>
+                <div class="form-group p-1">
+                    <label>Rol</label>
+                    <select class="form-select" name="rol" required >
+                        <option value="">Selecciona</option>
+                        {{#if roles}}
+                            {{#each roles}}
+                                <option value="{{nombre}}">{{nombre}}</option>
+                            {{/each}}
+                        {{/if}}
+                    </select>
+                </div>
+                <div class="form-group p-1">
+                    <label>Estado</label>
+                    <select class="form-select" name="estado" required >
+                        <option value="">Selecciona</option>
+                        {{#if estados}}
+                            {{#each estados}}
+                                <option value="{{nombre}}">{{nombre}}</option>
+                            {{/each}}
+                        {{/if}}
+                    </select>
                 </div>
                 <div class="col-md-4 offset-md-4 py-2">
                     <button class="btn btn-primary form-control">

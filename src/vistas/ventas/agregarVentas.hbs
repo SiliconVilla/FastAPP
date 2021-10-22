@@ -1,0 +1,92 @@
+<div class="container p-4">
+    <div class="row mt-2">
+        <div class="row">
+            <div class="col-md-6 col-lg-6">
+                <h3>Nuevo Venta</h3>
+            </div>
+        </div>
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/ventas">Listar Ventas</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Crear Venta</li>
+            </ol>
+        </nav>
+        <div class="col-md-12 p-2">
+            <form action="/agregarVentas" method="POST">
+                <div class="form-group p-1">
+                    <label>Identificacion Cliente</label>
+                    <input type="text" name="idCliente" required placeholder="" class="form-control">
+                </div>
+                <div class="form-group p-1">
+                    <label>Nombre Cliente</label>
+                    <input type="number" name="cliente" required placeholder="" class="form-control">
+                </div>
+                <div class="form-group p-1">
+                    <label>Fecha Venta</label>
+                    <input type="date" name="fecha" required placeholder="" class="form-control">
+                </div>
+                <div class="form-group p-1">
+                    <label>Encargado</label>
+                    <select class="form-select" name="encargado">
+                        <option value="">Selecciona</option>
+                        {{#if usuarios}}
+                            {{#each usuarios}}
+                                <option value="1">{{nombre}}</option>
+                            {{/each}}
+                        {{/if}}
+                    </select>
+                </div>
+                <div class="form-group p-1">
+                    <label>Estado</label>
+                    <select class="form-select" name="estado" required >
+                        <option value="">Selecciona</option>
+                        {{#if estados}}
+                            {{#each estados}}
+                                <option value="1">{{nombre}}</option>
+                            {{/each}}
+                        {{/if}}
+                    </select>
+                </div>
+                <div class="form-group p-1">
+                    <div class="card">
+                        <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-6">
+                                        <h5 class="card-title">Productos</h5>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6">
+                                        <a href="#" class="btn btn-outline-success float-end" role="button" aria-pressed="true">
+                                            <i class="fas fa-plus"></i> Adicionar Producto
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-6">
+                                        <label>Nombre producto</label>
+                                        <select class="form-select" name="encargado">
+                                            <option value="">Selecciona</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-2">
+                                        <label>Cantidad</label>
+                                        <input type="number" name="fecha" required placeholder="" class="form-control">
+                                    </div>
+                                    <div class="col-3">
+                                        <label>Precio Unitario</label>
+                                        <input type="text" name="fecha" required placeholder="" class="form-control">
+                                    </div>
+                                    <div class="col-1">
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 offset-md-4 py-2">
+                    <button class="btn btn-primary form-control">
+                        Crear
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

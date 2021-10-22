@@ -2,11 +2,11 @@
     <div class="row mt-2">
         <div class="row">
             <div class="col-md-6 col-lg-6">
-                <h3>Listado de usuarios</h3>
+                <h3>Listado de ventas</h3>
             </div>
             <div class="col-md-6 col-lg-6">
-                <a href="/usuarios/crear" class="btn btn-outline-success float-end" role="button" aria-pressed="true">
-                    <i class="fas fa-plus"></i> Crear Usuario
+                <a href="/ventas/crear" class="btn btn-outline-success float-end" role="button" aria-pressed="true">
+                    <i class="fas fa-plus"></i> Crear Venta
                 </a>
             </div>
         </div>
@@ -21,27 +21,26 @@
             <thead class="table-dark">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Nombres</th>
-                    <th scope="col">Correo</th>
-                    <th scope="col">Rol</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Acción</th>
+                    <th scope="col">Id Cliente</th>
+                    <th scope="col">Nombre Cliente</th>
+                    <th scope="col">Fecha Venta</th>
+                    <th scope="col">Encargado</th>
+                    <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                {{#if usuarios}}
-                {{#each usuarios}}
+                {{#if ventas}}
+                {{#each ventas}}
                 <tr>
                     <td>{{@key}}</td>
-                    <td>{{nombre}}</td>
-                    <td>{{correo}}</td>
-                    <td>{{rol}}</td>
-                    <td>{{estado}}</td>
+                    <td>{{idCliente}}</td>
+                    <td>{{cliente}}</td>
+                    <td>{{fecha}}</td>
+                    <td>{{encargado}}</td>
                     <td>
-                        <a href="#" class="btn btn-outline-info" role="button" aria-pressed="true">
+                        <a href="/ventas/editar/{{@key}}" class="btn btn-outline-info" role="button" aria-pressed="true">
                             <i class="far fa-edit"></i>
                         </a>
-                      {{!--   <a href="/activarProducto/{{@key}}" class="btn btn-danger form-control">Activar</a> --}}
                     </td>
                 </tr>
                 {{/each}}
