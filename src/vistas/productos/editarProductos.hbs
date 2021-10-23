@@ -1,7 +1,7 @@
 <div class="container p-4">
     <div class="row mt-2">
         <div class="row">
-            <div class="col-md-6 col-lg-6">
+            <div class="row">
                 <h3>Editar Producto {{id}}</h3>
             </div>
         </div>
@@ -15,17 +15,21 @@
             {{#if producto}}
             <form action="/editarProductos/{{id}}" method="POST">
                 <div class="form-group p-1">
+                    <label for="nombre" class="form-label"><h5>Nombre</h5></label>
                     <input type="text" name="nombre" required value="{{producto.nombre}}" placeholder="Nombre"
                         class="form-control" autofocus>
                 </div>
                 <div class="form-group p-1">
+                    <label for="descripcion" class="form-label"><h5>Descripción</h5></label>
                     <textarea class="form-control" required name="descripcion" placeholder="Descripción" >{{producto.descripcion}}</textarea>
                 </div>
                 <div class="form-group p-1">
+                    <label for="precio" class="form-label"><h5>Precio</h5></label>
                     <input type="number" name="precio" required value="{{producto.precio}}" placeholder="Precio"
                         class="form-control">
                 </div>
                 <div class="form-group p-1">
+                    <label for="imagen" class="form-label"><h5>Imagen</h5></label>
                     <input type="text" name="imagen"  value="{{producto.imagen}}" placeholder="Imagen"
                         class="form-control">
                 </div>

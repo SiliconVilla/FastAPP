@@ -26,6 +26,18 @@ router.get('/productos', (req, res) => {
     });
 });
 
+
+//Gestionar Productos Inactivos
+router.get('/gestionarProductos', (req, res) => {
+    //res.send('Listado de productos, configurar la vista');
+    db.ref('productos').orderByChild('estado').equalTo("Inactivo").once('value', (snapshot) => {
+        const data = snapshot.val();
+        res.render('productos/gestionarProductos', { productos: data });
+        console.log("Desde la base de datos --> ", data);
+    });
+    
+});
+
 router.get('/activarProducto/:id', (req, res) => {
     //res.send('Listado de productos, configurar la vista');
     const id = req.params.id;

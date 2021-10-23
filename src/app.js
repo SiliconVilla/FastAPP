@@ -98,7 +98,7 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/error' }),
   function(req, res) {
     // Successful authentication, redirect success.
-    res.redirect('/');
+    res.redirect('/productos');
   });
 
   //Logout
