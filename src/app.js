@@ -98,7 +98,14 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/error' }),
   function(req, res) {
     // Successful authentication, redirect success.
-    res.redirect('/productos');
+    console.log(req.user);
+    //console.log(req.user.displayName);
+    db.ref('productos').orderByChild('estado').equalTo("Activo").once('value', (snapshot) => {
+        const data = snapshot.val();
+        res.render('productos/listadoProductos', { productos: data, usuario: req.user });
+        //console.log('Datos desede la bd --> ', data);
+    });
+    //res.redirect('/productos', {usuario: req.user});
   });
 
   //Logout
@@ -109,7 +116,7 @@ app.get('/logout', (req, res) => {
 
     //Listar Productos y será la raíz donde redirije al autenticar
 
-app.get('/', (req, res) => {
+/*app.get('/', (req, res) => {
     //res.send('Listado de productos, configurar la vista');
     db.ref('productos').orderByChild('estado').equalTo("Activo").once('value', (snapshot) => {
         const data = snapshot.val();
@@ -117,7 +124,7 @@ app.get('/', (req, res) => {
         console.log('Datos desede la bd --> ', data);
     });
     
-});
+});*/
 
 //Exportar el módulo
 module.exports = app;

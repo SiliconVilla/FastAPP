@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/SiliconVilla/FastAPP#readme",
   "dependencies": {
+    "axios": "^0.23.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
     "dotenv": "^10.0.0",
