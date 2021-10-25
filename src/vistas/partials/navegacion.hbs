@@ -6,7 +6,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto">
-          {{#if user}}usuarios/maestroUsuarios
+          <!--{{#if usuario}}usuarios/maestroUsuarios
+              {{usuario.displayName}} - {{usuario.email}}
             <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               Gestionar Productos
@@ -50,14 +51,27 @@
               <li><a class="dropdown-item" href="/agregarUsuarios">Ingresar</a></li>
               <li><a class="dropdown-item" href="/maestroUsuarios">Listar</a></li>
             </ul>
-          </div>
+          </div-->
           <!--div class="dropdown p-2">
             <a class="btn btn-success" href="/login">Login</a>
           </div-->
+
+          {{#if usuario}}
+            {{usuario.displayName}} - {{usuario.email}}
+            {{else}}
+              <li class="nav-item">
+                <a href="/auth/google" class="nav-link"><img class="" src="https://developers.google.com/identity/images/btn_google_signin_light_normal_web.png"/></a>
+              </li>
+            {{/if}}
+
+            <li class="nav-item">
+              <a href="/logout" class="nav-link btn btn-danger">Salir</a>
+            </li>
           
           <li class="nav-item dropdown">
               
             {{#if usuario}}
+            {{usuario.displayName}} - {{usuario.email}}
             {{else}}
               <li class="nav-item">
                 <a href="/auth/google" class="nav-link"><img class="" src="https://developers.google.com/identity/images/btn_google_signin_light_normal_web.png"/></a>
@@ -89,8 +103,8 @@
 <div class="row p-3">
       
     <h5>{{#if usuario}}
-          {{usuario.displayName}} - {{usuario.email}}
+          {{displayName}} - {{email}}
         {{/if}}
     </h5>
-         
+
 </div>

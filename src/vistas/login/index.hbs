@@ -1,4 +1,4 @@
-
+<script src="../../indexfirebase.js"></script>
 <section class="h-100 gradient-form" style="background-color: #eee;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -30,8 +30,44 @@
                                         <input type="password" id="form2Example22" class="form-control" />
                                     </div>
                                     <div class="text-center d-grid gap-2">
-                                        <a href="/auth/google" class="btn btn-login"
-                                            type="button">INGRESAR</a>
+                                        <a href="/auth/google"><img class="form-control" src="https://onymos.com/wp-content/uploads/2020/10/google-signin-button-1024x260.png"/></a>
+                                    </div>
+                                    <p></p>
+                                    <div class="text-center d-grid gap-2">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#authModal">Login OAtuh</a>
+                                    </div>
+
+
+
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                    <p>Ingrese su usuario y Contraseña</p>
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form2Example11">Usuario</label>
+                                        <input type="email" id="form2Example11" class="form-control" placeholder="Correo Electrónico" />
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form2Example22">Contraseña</label>
+                                        <input type="password" id="form2Example22" class="form-control" />
+                                    </div>
+                        
+                                </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <!--button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button-->
+                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                        </div>
+                                    </div>
                                     </div>
                                 </form>
                             </div>

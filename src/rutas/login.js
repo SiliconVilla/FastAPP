@@ -2,7 +2,7 @@ const { Router } = require('express');
 const router = Router();
 //Conectar a Base de Datos
 
-//Login
+//Login 
 router.get('/', (req, res) => {
     //console.log(req,res);
     const refLogin = "Página Lógin";
