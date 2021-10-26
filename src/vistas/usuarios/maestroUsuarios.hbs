@@ -20,7 +20,8 @@
         <table class="table">
             <thead class="table-dark">
                 <tr>
-                    <th scope="col">#</th>
+                    <!--th scope="col" style="visibility: hidden;">#</th-->
+                    <th scope="col">Email</th>
                     <th scope="col">Nombres</th>
                     <th scope="col">Rol</th>
                     <th scope="col">Estado</th>
@@ -31,7 +32,8 @@
                 {{#if usuarios}}
                 {{#each usuarios}}
                 <tr>
-                    <td>{{@key}}</td>
+                    <!--td style="visibility: hidden;">{{@key}}</td-->
+                    <td>{{email}}</td>
                     <td>{{nombre}}</td>
                     <td>{{rol}}</td>
                     <td>{{estado}}</td>

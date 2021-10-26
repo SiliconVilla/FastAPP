@@ -3,14 +3,14 @@ module.exports = {
         if (req.isAuthenticated()){
             return next();
         }
-        return res.redirect('/login');
+        return res.redirect('/');
     },
 
     noEstaLogueado(req, res, next){
         if (!req.isAuthenticated()){
             return next();
         }
-        return res.redirect('/profile');
+        //return res.redirect('/productos');
     }
 
 };

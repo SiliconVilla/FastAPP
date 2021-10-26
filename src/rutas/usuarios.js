@@ -2,8 +2,10 @@ const { Router } = require('express');
 const router = Router();
 const db = require('../keysfirebase');
 
+const { noEstaLogueado, estaLogueado } = require('../rutas/auth');
+
 //Lista Usuarios
-router.get('/usuarios', (req, res) => {
+router.get('/usuarios', estaLogueado, (req, res) => {
     //res.send('Listado de productos, configurar la vista');
     db.ref('usuarios').once('value', (snapshot) => {
         const data = snapshot.val();
@@ -15,12 +17,12 @@ router.get('/usuarios', (req, res) => {
 
 
 //Agregar Usuarios
-router.get('/usuarios/crear', (req, res) => {
+router.get('/usuarios/crear', estaLogueado, (req, res) => {
     //res.send('Listado de productos, configurar la vista');
     res.render('usuarios/agregarUsuarios',{activeUsuarios: true,});
 });
 
-router.post('/agregarUsuarios/', (req, res) => {
+router.post('/agregarUsuarios/', estaLogueado, (req, res) => {
     const id = req.params.id;
     const estado = "Activo";
     const { nombre, rol } = req.body;
