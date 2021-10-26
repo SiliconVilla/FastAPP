@@ -52,6 +52,8 @@ app.use(passport.session());
 //Variables Globales
 app.use((req, res, next) => {
     app.locals.agregado = req.flash('agregado');
+    app.locals.user = req.user;
+    app.locals.usuario = req.user;
     next();
 });
 
@@ -100,9 +102,47 @@ app.get('/auth/google/callback',
     // Successful authentication, redirect success.
     console.log(req.user);
     //console.log(req.user.displayName);
+    //Crear usuario al loguear
+    const email = req.user.email;
+
+    db.ref('usuarios').orderByChild('email').equalTo(req.user.email).once('value', (snapshot) => {
+        const data = snapshot.val();
+        if(data != null){
+            //res.render('productos/listadoProductos', { productos: data, usuario: req.user });
+        } else {
+            const estado = "Pendiente";
+            const rol = "Usuario";
+            const nombre = req.user.displayName;
+            email = req.user.email;
+            const nuevoUsuario = {
+                nombre,
+                email,
+                rol,
+                estado
+            };
+            db.ref('usuarios').push(nuevoUsuario);
+        }
+        
+        //console.log('Datos desede la bd --> ', data);
+    });
+
+    
+
+
     db.ref('productos').orderByChild('estado').equalTo("Activo").once('value', (snapshot) => {
         const data = snapshot.val();
-        res.render('productos/listadoProductos', { productos: data, usuario: req.user });
+        
+        if(email == "asocia2.co@gmail.com"){
+            app.locals.rol = "Administrador"
+            res.render('productos/listadoProductos', { productos: data, usuario: req.user });
+            console.log('Datos desede la bd --> ', req.user.displayName);
+        } else {
+            app.locals.rol = "Vendedor"
+            res.render('productos/listadoProductos', { productos: data, usuario: req.user  });
+            console.log('Datos desede la bd --> ', req.user.displayName);
+        }
+
+        
         //console.log('Datos desede la bd --> ', data);
     });
     //res.redirect('/productos', {usuario: req.user});
@@ -111,7 +151,7 @@ app.get('/auth/google/callback',
   //Logout
 app.get('/logout', (req, res) => {
         req.logOut();
-        res.redirect('/login');
+        res.redirect('/');
     });
 
     //Listar Productos y será la raíz donde redirije al autenticar

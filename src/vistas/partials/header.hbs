@@ -4,9 +4,23 @@
         data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="navbar-nav">
-        <div class="nav-item text-nowrap">
-            <a class="nav-link px-3" href="#">Sign out</a>
+    <div class="navbar-nav" style="color: white;">
+        <div class="row">
+            {{#if usuario}}
+                <li class="nav-item">
+                <div>{{usuario.displayName}} - {{rol}}</div>
+                </li>
+                <li class="nav-item">
+                <a href="/logout" class="nav-link">Salir</a>
+                </li>
+            {{else}}
+                <li class="nav-item">
+                <a href="/login" class="nav-link">Ingresar</a>
+                </li>
+                <!--li class="nav-item">
+                <a href="/registro" class="nav-link">Registrarse</a>
+                </li-->
+            {{/if}}
         </div>
     </div>
 </header>
