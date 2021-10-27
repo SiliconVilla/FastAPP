@@ -1,0 +1,63 @@
+<div class="container p-4">
+    <div class="row mt-2">
+        <div class="row">
+            <div class="col-md-6 col-lg-6">
+                <h3>Nuevo Venta</h3>
+            </div>
+        </div>
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/ventas">Listar Ventas</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Crear Venta</li>
+            </ol>
+        </nav>
+        <div class="col-md-12 p-2">
+            <form action="/agregarVentas" method="POST">
+                <div class="form-group p-1">
+                    <input type="text" name="factura" value="{{ventasTo}}" required placeholder="No. Factura" class="form-control" style="visibility: hidden;"">
+                </div>
+                <div class="form-group p-1">
+                    <input type="text" name="cliente" required placeholder="Nombre del Cliente" class="form-control" autofocus>
+                </div>
+                <div class="form-group p-1">
+                    <select name="tipodoc" required class="form-control">
+                        <option value="CC">Cédula de Ciudadanía</option>
+                        <option value="NIT">NIT</option>
+                        <!--option value="value3">Value 3</option-->
+                    </select>
+                    <!--input type="text" name="tipodoc" required placeholder="Tipo Documento" class="form-control"-->
+                </div>
+                <div class="form-group p-1">
+                    <input type="number" name="documento" required placeholder="No. Documento" class="form-control">
+                </div>
+                <div class="form-group p-1">
+                    <input type="text" name="direccion" required placeholder="Dirección" class="form-control">
+                </div>
+                <div class="form-group p-1">
+                    <input type="number" name="telefono" required placeholder="Telefono" class="form-control">
+                </div>
+                <div class="form-group p-1">
+                    <input class="form-control" required name="fecha" placeholder="Fecha">
+                </div>
+                <div class="form-group p-1">
+                    <select name="producto" class="form-control" id="select"></select>
+                    
+                </div>
+                <div class="form-group p-1">
+                    <input type="number" name="cantidad" placeholder="Cantidad" class="form-control">
+                </div>
+                <div class="form-group p-1">
+                    <input type="number" name="total" placeholder="Total a Pagar" class="form-control">
+                </div>
+                <div class="form-group p-1">
+                    <input type="text" name="vendedor" placeholder="Vendedor" class="form-control">
+                </div>
+                <div class="col-md-4 offset-md-4 py-2">
+                    <button class="btn btn-primary form-control">
+                        Crear
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

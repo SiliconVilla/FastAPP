@@ -59,6 +59,7 @@ app.use((req, res, next) => {
 
 //Rutas
 app.use(require('./rutas/productos'));
+app.use(require('./rutas/ventas'));
 app.use(require('./rutas/login'));
 app.use(require('./rutas/usuarios'));
 
@@ -105,15 +106,16 @@ app.get('/auth/google/callback',
     //Crear usuario al loguear
     const email = req.user.email;
 
-    db.ref('usuarios').orderByChild('email').equalTo(req.user.email).once('value', (snapshot) => {
+    db.ref('usuarios').orderByChild('email').equalTo(email).once('value', (snapshot) => {
         const data = snapshot.val();
+        console.log('Datos desede la bd --> ', data);
         if(data != null){
             //res.render('productos/listadoProductos', { productos: data, usuario: req.user });
         } else {
             const estado = "Pendiente";
             const rol = "Usuario";
             const nombre = req.user.displayName;
-            email = req.user.email;
+            //email = req.user.email;
             const nuevoUsuario = {
                 nombre,
                 email,

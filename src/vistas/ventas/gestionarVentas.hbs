@@ -1,0 +1,109 @@
+<div class="container text-center">
+    <h3 style="padding: 10px;">Gestionar Productos</h3>
+    {{#if productos}}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Estado</th>
+            
+            </tr>
+        </thead>
+
+
+        
+
+        <tbody>
+
+            {{#each productos}}
+            
+                <tr>
+                    
+                    <td>{{nombre}}</td>
+                    <td>{{descripcion}}</td>
+                    <td>{{precio}}</td>
+                    <td>{{imagen}}</td>
+                    <td><a href="/activarProducto/{{@key}}" class="btn btn-danger form-control">Activar</a></td>
+                    
+                    
+                    
+                </tr>
+
+            {{/each}}
+            
+            
+        </tbody>
+    </table>
+    {{else}}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Estado</th>
+                
+                </tr>
+            </thead>
+
+            <tbody>
+                
+                    <tr>    
+                        <td>Producto 1</td>
+                        <td>Descripcion 1</td>
+                        <td>10000</td>
+                        <td>Imagen 1</td>
+                        <td><a href="/" class="btn btn-danger form-control">Activar</a></td>
+                    </tr>
+
+                    <tr>    
+                        <td>Producto 2</td>
+                        <td>Descripcion 2</td>
+                        <td>10000</td>
+                        <td>Imagen 2</td>
+                        <td><a href="/" class="btn btn-danger form-control">Activar</a></td>
+                    </tr>
+
+                    <tr>    
+                        <td>Producto 3</td>
+                        <td>Descripcion 3</td>
+                        <td>10000</td>
+                        <td>Imagen 3</td>
+                        <td><a href="/" class="btn btn-danger form-control">Activar</a></td>
+                    </tr>
+                
+                
+            </tbody>
+        </table>   
+        
+    {{/if}}
+
+
+
+</div>
+
+
+
+<!--div class="col-md-3">
+    <div class="card text-center">
+        <div class="card-body">
+            Producto
+        </div>
+        <div class="card-footer">
+            <p>IDProducto</p>
+            <p>NombreProducto</p>
+            <p>DescripciónProducto</p>
+            <p>PrecioProducto</p>
+            <p>ImagenProducto</p>
+            <div class="row">
+                <p><a href="/editarProductos" class="btn btn-info">Editar</a></p>
+                
+                <p><a href="/" class="btn btn-danger">Eliminar</a></p>
+            </div>
+        </div>
+    </div>
+</div-->
