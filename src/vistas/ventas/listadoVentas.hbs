@@ -2,16 +2,19 @@
     <div class="row mt-2">
         <div class="row">
             <div class="col-md-6 col-lg-6">
-                <h3>Listado de productos</h3>
+                <h3>Listado de ventas</h3>
                 <!--{{usuario.displayName}} - {{usuario.email}}-->
             </div>
             <div class="col-md-6 col-lg-6">
-                <a style="margin: 3px;" href="/gestionarProductos" class="btn btn-outline-success float-end" role="button" aria-pressed="true">
-                    <i class="fas fa-plus"></i> Gestionar Productos
+                <a style="margin: 3px;" href="/gestionarVentas" class="btn btn-outline-success float-end" role="button" aria-pressed="true">
+                    <i class="fas fa-plus"></i> Gestionar Ventas
                 </a>
-                <a style="margin: 3px;" href="/productos/crear" class="btn btn-outline-success float-end" role="button" aria-pressed="true">
-                    <i class="fas fa-plus"></i> Crear Producto
+                <a style="margin: 3px;" href="/ventas/crear/{{ventasT}}" class="btn btn-outline-success float-end" role="button" aria-pressed="true">
+                    <i class="fas fa-plus"></i> Crear Venta
                 </a>
+                <!--a style="margin: 3px;" href="/api/productos" class="btn btn-outline-success float-end" role="button" aria-pressed="true">
+                    <i class="fas fa-plus"></i> Api Productos
+                </a-->
             </div>
         </div>
         <div class="col-sm-12 mt-3">
@@ -24,10 +27,17 @@
         <table class="table">
             <thead class="table-dark">
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nombre Producto</th>
-                    <th scope="col">Descripcion</th>
-                    <th scope="col">Precio</th>
+                    <th scope="col">#Factura</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">TipoDoc</th>
+                    <th scope="col">#Documento</th>
+                    <th scope="col">Direccion</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">$Total</th>
+                    <th scope="col">Vendedor</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
@@ -35,15 +45,23 @@
                 {{#if productos}}
                 {{#each productos}}
                 <tr>
-                    <td>{{@key}}</td>
-                    <td>{{nombre}}</td>
-                    <td>{{descripcion}}</td>
-                    <td>{{precio}}</td>
+                    <!--td>{{@key}}</td-->
+                    <td>{{factura}}</td>
+                    <td>{{cliente}}</td>
+                    <td>{{tipodoc}}</td>
+                    <td>{{documento}}</td>
+                    <td>{{direccion}}</td>
+                    <td>{{telefono}}</td>
+                    <td>{{fecha}}</td>
+                    <td>{{producto}}</td>
+                    <td>{{cantidad}}</td>
+                    <td>{{total}}</td>
+                    <td>{{vendedor}}</td>
                     <td>
-                        <a href="/productos/editar/{{@key}}" class="btn btn-outline-info" role="button" aria-pressed="true">
+                        <a href="/ventas/editar/{{@key}}" class="btn btn-outline-info" role="button" aria-pressed="true">
                             <i class="far fa-edit"></i>
                         </a>
-                        <a href="/eliminarProducto/{{@key}}" class="btn btn-outline-danger" role="button" aria-pressed="true">
+                        <a href="/eliminarVenta/{{@key}}" class="btn btn-outline-danger" role="button" aria-pressed="true">
                             <i class="fa fa-trash-o fa-lg"></i>
                         </a>
                     </td>
